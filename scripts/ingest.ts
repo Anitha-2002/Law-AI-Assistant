@@ -1,47 +1,4 @@
-import { appendFileSync, existsSync } from "fs";
-import { resolve } from "path";
-// #region agent log
-try {
-  appendFileSync(
-    "/Users/anitha/Documents/Anitha Business/Law-AI-Assistant/.cursor/debug.log",
-    JSON.stringify({
-      location: "scripts/ingest.ts:6",
-      message: "Script entry - checking env vars after load-env import",
-      data: {
-        envPath: resolve(process.cwd(), ".env.local"),
-        envFileExists: existsSync(resolve(process.cwd(), ".env.local")),
-        hasNextPublicSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
-        hasSupabaseServiceRoleKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-        hasOpenaiApiKey: !!process.env.OPENAI_API_KEY,
-        allEnvKeys: Object.keys(process.env)
-          .filter((k) => k.includes("SUPABASE") || k.includes("OPENAI"))
-          .sort(),
-      },
-      timestamp: Date.now(),
-      sessionId: "debug-session",
-      runId: "post-fix",
-      hypothesisId: "A,B,C,E",
-    }) + "\n"
-  );
-} catch (e) {}
-// #endregion
 import { supabaseAdmin } from "../lib/supabase";
-// #region agent log
-try {
-  appendFileSync(
-    "/Users/anitha/Documents/Anitha Business/Law-AI-Assistant/.cursor/debug.log",
-    JSON.stringify({
-      location: "scripts/ingest.ts:7",
-      message: "After supabase import - checking if error occurred",
-      data: { imported: !!supabaseAdmin },
-      timestamp: Date.now(),
-      sessionId: "debug-session",
-      runId: "post-fix",
-      hypothesisId: "D",
-    }) + "\n"
-  );
-} catch (e) {}
-// #endregion
 import { createEmbedding } from "../lib/openai";
 
 // Sample data: 5 lawyers, 5 cases, 5 articles
